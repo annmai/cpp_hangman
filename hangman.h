@@ -12,14 +12,18 @@ class Hangman {
         const int MAX_GUESSES = 8;
         int numGuessesLeft;
         string secretWord;
-        string playerGuessedWord;
+        string playerWord;
         bool isGameOver;
+        string getSecretWord() { return secretWord; }
+        string getPlayerWord() { return playerWord; }
+        bool searchString(char c);
 
     public:
         Hangman(string words, int numWords);
         string readRandomWordFromFile(string filename, int numWords);
         void displayMenu();
-        string getSecretWord() { return secretWord; }
+        void play();
+        
 };
 
 #endif

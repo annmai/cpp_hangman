@@ -1,16 +1,24 @@
 #include "hangman.h"
 #include <fstream>
 #include <iostream>
+#include <time.h>
 
 Hangman::Hangman(string words, int numWords) {
     isGameOver = false;
     numGuessesLeft = MAX_GUESSES;
     secretWord = readRandomWordFromFile(words, numWords);
+    playerWord = secretWord;
+
+    for(int i = 0; i < secretWord.length() - 1; ++i)
+        playerWord[i] = '-';
 }
 
 string Hangman::readRandomWordFromFile(string filename, int numWords) {
 
     ifstream wordsFile(filename);
+
+    // seed random with time
+    srand(time(0));
 
     // read a word from a random line number in the file and
     // store the word read in member string 'secretWord'
@@ -36,4 +44,50 @@ void Hangman::displayMenu() {
     cout << "*                                               *\n";
 	cout << "* * * * * * * * * * * * * * * * * * * * * * * * *\n";
 
+}
+
+void Hangman::play() {
+
+    while(numGuessesLeft > 0 && !isGameOver) {
+
+        char guess;
+
+        cout << "The word looks like this: ";
+        cout << playerWord << endl;
+        cout << "You have " << numGuessesLeft << " guesses left.\n";
+        cout << "Enter your guess: ";
+        cin >> guess;
+
+        if(searchString(guess)) {
+            cout << "Your guess is correct.\n";
+            if(secretWord.compare(playerWord) == 0) {
+                cout << "You win!\n";
+                isGameOver = true;
+                cout << "The word was " << playerWord << endl;
+            }
+        }
+            
+        else {
+            cout << "Sorry, there is no " << guess << " in the word.\n";
+            numGuessesLeft--;
+            if(numGuessesLeft == 0) {
+                isGameOver = true;
+                cout << "You lose!\n";
+            }
+                
+        }
+
+    }
+}
+
+bool Hangman::searchString(char c) {
+
+    for(int i = 0; i < secretWord.length() - 1; ++i) {
+        if(secretWord[i] == c) {
+            playerWord[i] = tolower(c);
+            return true;
+        }
+    }
+
+    return false;
 }
