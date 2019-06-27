@@ -52,6 +52,8 @@ void Hangman::play() {
 
         char guess;
 
+        displayHangedMan(numGuessesLeft);
+
         cout << "The word looks like this: ";
         cout << playerWord << endl;
         cout << "You have " << numGuessesLeft << " guesses left.\n";
@@ -72,6 +74,7 @@ void Hangman::play() {
             numGuessesLeft--;
             if(numGuessesLeft == 0) {
                 isGameOver = true;
+                displayHangedMan(0);
                 cout << "You lose!\n";
             }
                 
@@ -83,11 +86,175 @@ void Hangman::play() {
 bool Hangman::searchString(char c) {
 
     for(int i = 0; i < secretWord.length() - 1; ++i) {
-        if(secretWord[i] == c) {
+        if(secretWord[i] == c && playerWord[i] != c) {
             playerWord[i] = tolower(c);
             return true;
         }
     }
 
     return false;
+}
+
+void Hangman::displayHangedMan(int guessesLeft) {
+
+    switch(guessesLeft) {
+
+        case 8:
+
+            cout << "* * * * * * * * * * * * * * * * * * * * * * * * *\n";
+            cout << "*                                               *\n";
+	        cout << "*        ------------------                     *\n";
+	        cout << "*        |                |                     *\n";
+	        cout << "*        |                                      *\n";
+            cout << "*        |                                      *\n";
+	        cout << "*        |                                      *\n";
+	        cout << "*        |                                      *\n";
+            cout << "*        |                                      *\n";
+	        cout << "*        |                                      *\n";
+            cout << "*        |                                      *\n";
+            cout << "*   ------------                                *\n";
+            cout << "* * * * * * * * * * * * * * * * * * * * * * * * *\n";
+            break;
+
+        case 7:
+
+            cout << "* * * * * * * * * * * * * * * * * * * * * * * * *\n";
+            cout << "*                                               *\n";
+	        cout << "*        ------------------                     *\n";
+	        cout << "*        |                 |                    *\n";
+	        cout << "*        |                ( )                   *\n";
+            cout << "*        |                                      *\n";
+	        cout << "*        |                                      *\n";
+	        cout << "*        |                                      *\n";
+            cout << "*        |                                      *\n";
+	        cout << "*        |                                      *\n";
+            cout << "*        |                                      *\n";
+            cout << "*   ------------                                *\n";
+            cout << "* * * * * * * * * * * * * * * * * * * * * * * * *\n";
+            break;
+
+        case 6:
+
+            cout << "* * * * * * * * * * * * * * * * * * * * * * * * *\n";
+            cout << "*                                               *\n";
+	        cout << "*        ------------------                     *\n";
+	        cout << "*        |                 |                    *\n";
+	        cout << "*        |                ( )                   *\n";
+            cout << "*        |                 |                    *\n";
+	        cout << "*        |                 |                    *\n";
+	        cout << "*        |                                      *\n";
+            cout << "*        |                                      *\n";
+	        cout << "*        |                                      *\n";
+            cout << "*        |                                      *\n";
+            cout << "*   ------------                                *\n";
+            cout << "* * * * * * * * * * * * * * * * * * * * * * * * *\n";
+            break;
+
+        case 5:
+
+            cout << "* * * * * * * * * * * * * * * * * * * * * * * * *\n";
+            cout << "*                                               *\n";
+	        cout << "*        ------------------                     *\n";
+	        cout << "*        |                 |                    *\n";
+	        cout << "*        |                ( )                   *\n";
+            cout << "*        |            >----|                    *\n";
+	        cout << "*        |                 |                    *\n";
+	        cout << "*        |                                      *\n";
+            cout << "*        |                                      *\n";
+	        cout << "*        |                                      *\n";
+            cout << "*        |                                      *\n";
+            cout << "*   ------------                                *\n";
+            cout << "* * * * * * * * * * * * * * * * * * * * * * * * *\n";
+            break;
+
+        case 4:
+
+            cout << "* * * * * * * * * * * * * * * * * * * * * * * * *\n";
+            cout << "*                                               *\n";
+	        cout << "*        ------------------                     *\n";
+	        cout << "*        |                 |                    *\n";
+	        cout << "*        |                ( )                   *\n";
+            cout << "*        |            >----|----<               *\n";
+	        cout << "*        |                 |                    *\n";
+	        cout << "*        |                                      *\n";
+            cout << "*        |                                      *\n";
+	        cout << "*        |                                      *\n";
+            cout << "*        |                                      *\n";
+            cout << "*   ------------                                *\n";
+            cout << "* * * * * * * * * * * * * * * * * * * * * * * * *\n";
+            break;
+
+        case 3:
+
+            cout << "* * * * * * * * * * * * * * * * * * * * * * * * *\n";
+            cout << "*                                               *\n";
+	        cout << "*        ------------------                     *\n";
+	        cout << "*        |                 |                    *\n";
+	        cout << "*        |                ( )                   *\n";
+            cout << "*        |            >----|----<               *\n";
+	        cout << "*        |                 |                    *\n";
+	        cout << "*        |                /                     *\n";
+            cout << "*        |               /                      *\n";
+	        cout << "*        |                                      *\n";
+            cout << "*        |                                      *\n";
+            cout << "*   ------------                                *\n";
+            cout << "* * * * * * * * * * * * * * * * * * * * * * * * *\n";
+            break;
+
+        case 2:
+
+            cout << "* * * * * * * * * * * * * * * * * * * * * * * * *\n";
+            cout << "*                                               *\n";
+	        cout << "*        ------------------                     *\n";
+	        cout << "*        |                 |                    *\n";
+	        cout << "*        |                ( )                   *\n";
+            cout << "*        |            >----|----<               *\n";
+	        cout << "*        |                 |                    *\n";
+	        cout << "*        |                / \\                  *\n";
+            cout << "*        |               /   \\                 *\n";
+	        cout << "*        |                                      *\n";
+            cout << "*        |                                      *\n";
+            cout << "*   ------------                                *\n";
+            cout << "* * * * * * * * * * * * * * * * * * * * * * * * *\n";
+            break;
+
+        case 1:
+
+            cout << "* * * * * * * * * * * * * * * * * * * * * * * * *\n";
+            cout << "*                                               *\n";
+	        cout << "*        ------------------                     *\n";
+	        cout << "*        |                 |                    *\n";
+	        cout << "*        |                ( )                   *\n";
+            cout << "*        |            >----|----<               *\n";
+	        cout << "*        |                 |                    *\n";
+	        cout << "*        |                / \\                  *\n";
+            cout << "*        |             __/   \\                 *\n";
+	        cout << "*        |                                      *\n";
+            cout << "*        |                                      *\n";
+            cout << "*   ------------                                *\n";
+            cout << "* * * * * * * * * * * * * * * * * * * * * * * * *\n";
+            break;
+
+        case 0:
+
+            cout << "* * * * * * * * * * * * * * * * * * * * * * * * *\n";
+            cout << "*                                               *\n";
+	        cout << "*        ------------------                     *\n";
+	        cout << "*        |                 |                    *\n";
+	        cout << "*        |                ( )                   *\n";
+            cout << "*        |            >----|----<               *\n";
+	        cout << "*        |                 |                    *\n";
+	        cout << "*        |                / \\                  *\n";
+            cout << "*        |             __/   \\__               *\n";
+	        cout << "*        |                                      *\n";
+            cout << "*        |                                      *\n";
+            cout << "*   ------------                                *\n";
+            cout << "* * * * * * * * * * * * * * * * * * * * * * * * *\n";
+            break;
+
+        default: break;
+
+    }
+
+
 }

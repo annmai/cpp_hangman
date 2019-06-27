@@ -17,6 +17,7 @@ class Hangman {
         string getSecretWord() { return secretWord; }
         string getPlayerWord() { return playerWord; }
         bool searchString(char c);
+        void displayHangedMan(int guessesLeft);
 
     public:
         Hangman(string words, int numWords);

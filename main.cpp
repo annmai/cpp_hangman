@@ -12,33 +12,36 @@ int main() {
     int userChoice;
     bool isInvalidSelection = false;
 
-    Hangman game("lexicon.txt", 100);
-    game.displayMenu(); 
+    while(true) {
+        
+        Hangman game("lexicon.txt", 100);
+        game.displayMenu(); 
 
         cout << "Enter Your Selection: ";
         cin >> userChoice;
 
-    do {
+        do {
 
-        if(userChoice == 1) {
-            cout << "Let the game begin!\n";
-            game.play();
-            break;
-        }
-        else if(userChoice == 2) {
-            cout <<  "Goodbye!";
-            return 0;
-        }
+            if(userChoice == 1) {
+                cout << "Let the game begin!\n";
+                game.play();
+                break;
+            }
+            else if(userChoice == 2) {
+                cout <<  "Goodbye!";
+                return 0;
+            }
 
-        else {
-            isInvalidSelection = true;
-            cin.clear();
-            cin.ignore(INT_MAX, '\n');
-            cout << "Invalid Choice. Enter Your Selection: ";
-            cin >> userChoice;
+            else {
+                isInvalidSelection = true;
+                cin.clear();
+                cin.ignore(INT_MAX, '\n');
+                cout << "Invalid Choice. Enter Your Selection: ";
+                cin >> userChoice;
+            }
         }
+        while(isInvalidSelection);
     }
-    while(isInvalidSelection);
-        
+  
     return 0;
 }
